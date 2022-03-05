@@ -1,0 +1,27 @@
+---
+- name: update apt packages
+  become: yes
+  apt:
+    update_cache: yes
+    upgrade: 'yes'
+
+- name: install oxygen cursors from the repo
+  become: yes
+  ansible.builtin.apt:
+    name:
+      - oxygen-cursor-theme
+      - oxygen-cursor-theme-extra
+    state: present
+
+- name: install the oxygen cursors snap package
+  become: yes
+  community.general.snap:
+    name:
+      - oxygen-cursors
+  changed_when: false
+  when: include_snap
+
+- name: apply the snap themes
+  ansible.builtin.script: "{{ enable_snaps }}"
+  changed_when: false
+  when: include_snap

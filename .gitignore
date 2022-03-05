@@ -1,0 +1,13 @@
+.vscode/
+todo/
+
+*.png
+*.jpg
+*.code-workspace
+
+roles/gnome/tasks/pop_shell.yml
+
+secret
+vault.txt
+
+!80s_Disco_Dingo_Simulation_by_Abubakar_NK.jpg

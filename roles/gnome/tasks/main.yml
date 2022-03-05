@@ -1,0 +1,11 @@
+---
+- include: repo_extensions.yml
+- include: clock.yml
+- include: keybinds.yml
+- include: mutter.yml
+- include: power.yml
+- include: privacy.yml
+- include: theme.yml
+- include: wallpaper.yml
+- include: profile.yml
+- include: workspaces.yml

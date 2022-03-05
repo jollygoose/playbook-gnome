@@ -1,0 +1,29 @@
+---
+# - name: check if flat remix gtk is already installed
+#   stat:
+#     path: ~/.local/share/themes/Flat-Remix-GTK-Blue-Dark
+#   register: flat_remix
+
+- name: clone flat remix gtk
+  ansible.builtin.script: "{{ flat_remix_gtk_version }}"
+  changed_when: false
+  # when: not flat_remix.stat.exists
+
+- name: sync updated flat remix gtk elements
+  ansible.posix.synchronize:
+    src: "/tmp/flat-remix-gtk/themes/"
+    dest: ~/.local/share/themes/
+    rsync_opts:
+      - "-u"
+      - "-a"
+      - "--include=Flat-Remix-GTK-*"
+      - "--include=Flat-Remix-GTK-*/**"
+      - "--exclude=*"
+  delegate_to: "{{ inventory_hostname }}"
+  # when: not flat_remix.stat.exists
+
+- name: remove tmp files
+  file:
+    state: absent
+    path: /tmp/flat-remix-gtk
+  # when: not flat_remix.stat.exists

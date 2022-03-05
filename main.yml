@@ -1,0 +1,8 @@
+---
+- hosts: ubuntu_desktop
+
+  roles:
+    - role: flat_remix
+    - role: icons
+    - role: fonts
+    - role: gnome
